@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ project.name }}</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .status {
+            color: green;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>{{ project.name }}</h1>
+
+    <p>{{ project.description }}</p>
+
+    <p>
+        Status:
+        <span class="status">{{ project.status }}</span>
+    </p>
+
+    <button onclick="alert('Feature coming soon!')">
+        Test Button
+    </button>
+</div>
+
+</body>
+</html>
