@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ project.name }}</title>
+    <title>{{ food.name }}</title>
 
     <style>
         body {
@@ -37,20 +37,12 @@
 <body>
 
 <div class="card">
-    <h1>{{ project.name }}</h1>
+    <h1>{{ food.name }}</h1>
 
-    <p>{{ project.description }}</p>
+    <p>{{ food.description }}</p>
 
-    <p>
-        Foodclubs signed up for:
-        <span class="status">{{ project.status }}</span>
-        <button onclick="window.location.href='/foodclub'">
-            Go to the Food clubs page
-        </button>
-    </p>
-
-    <button onclick="alert('Feature coming soon!')">
-        Test Button
+    <button onclick="window.location.href='/'">
+        Back to Home
     </button>
 </div>
 
