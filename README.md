@@ -3,7 +3,7 @@
 
 # About the project
 
-This project is oriented for dormmates who are looking for an easy way to keep themselves oriented on foodclubs, kitchen cleanings and whos doing the dishes. By this we've created a database and a small frontend to represent the data from the database. Its all developed using sveltekit framework. 
+This project is oriented for dormmates who are looking for an easy way to keep themselves oriented on foodclubs, kitchen cleanings etc. By this we've created a database and a small frontend to represent the data from the database. We use the databases to keep track of the amount of foodclubs and cleanings that each person has made, and also for others to keep track of. Other people should also be able to see whats for dinner and sign up for the foodclubs. 
 
 ## E/R Diagram
 ![alt text](ERdiagram.png "E/R Diagram")
