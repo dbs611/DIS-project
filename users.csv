@@ -1,0 +1,6 @@
+id,name,room_number,madklub_taken,amount_cleanings,cleanings_done
+1,Alice Hansen,101,TRUE,4,2
+2,Bob Mortensen,102,FALSE,4,4
+3,Charlie Jensen,201,TRUE,3,1
+4,Dorte Nielsen,202,FALSE,5,5
+5,Erik Højgaard,301,FALSE,4,2
