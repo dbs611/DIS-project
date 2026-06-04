@@ -16,7 +16,7 @@ with database.begin() as conn:
 
     conn.execute(text("TRUNCATE TABLE beboer RESTART IDENTITY;"))
 
-    with open('users.csv', 'r', encoding='utf-8') as f:
+    with open('beboer.csv', 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
         header = next(reader)
         for row in reader:
@@ -36,3 +36,23 @@ with database.begin() as conn:
                 }
             )
         print("Successfully seeded BEBOER databasse")
+    
+    with open('user_table.csv', 'r', encoding='utf-8') as f:
+        reader = csv.reader(f)
+        header = next(reader)
+        for row in reader:
+            print(row)
+            conn.execute(
+                text("""
+                    INSERT INTO beboer (id, beboer_id, role, username, password)
+                    VALUES (:id, :beboer_id, :role, :username, :password)
+                """),
+                {
+                    "id": int(row[0]),
+                    "beboer_id": int(row[1]),
+                    "role": row[2],
+                    "username": row[3],
+                    "password": row[4]
+                }
+            )
+        print("Successfully seeded USER_TABLE database")

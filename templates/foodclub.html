@@ -41,10 +41,18 @@
 
     <p>{{ food.description }}</p>
 
-    <button onclick="window.location.href='/'">
-        Back to Home
-    </button>
 </div>
+    <form method="POST" action="/foodclub">
+        <input type="menu" name="menu" placeholder="Menu">
+        <input type="datetime-local" id="start_at" name="start_at">
+        <input type="datetime-local" id="close_at" name="close_at">
+        <p>Vegetarian</p>
+        <input type="checkbox" name="vege">
+        <p>Vegan</p>
+        <input type="checkbox" name="vegan">
+        <br>
+        <button type="submit">submit</button>
+    </form>
 
 </body>
 </html>
