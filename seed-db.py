@@ -44,7 +44,7 @@ with database.begin() as conn:
             print(row)
             conn.execute(
                 text("""
-                    INSERT INTO beboer (id, beboer_id, role, username, password)
+                    INSERT INTO user_table (id, beboer_id, role, username, password)
                     VALUES (:id, :beboer_id, :role, :username, :password)
                 """),
                 {
