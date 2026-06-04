@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        /* This hides the extra options by default */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="/signup">
+        <input type="text" name="username" placeholder="Brugernavn"><br><br>
+        <input type="password" name="password" placeholder="Kodeord"><br><br>
+        
+        <select name="role" id="roleSelect" onchange="toggleBeboerOptions()">
+            <option value="" disabled selected>Vælg Rolle</option>
+            <option value="Kitchen">Kitchen</option>
+            <option value="beboer">Beboer</option>
+        </select>
+        <br><br>
+
+        <div id="beboerOptions" class="hidden">
+            <br>
+            <input type="text" name="name" placeholder="Navn"><br><br>
+            <input type="number" name="room_number" placeholder="Room number"><br>
+            <br>
+        </div>
+            
+        <button type="submit">Opret Bruger</button>
+    </form>
+
+    <script>
+        function toggleBeboerOptions() {
+            const roleSelect = document.getElementById('roleSelect');
+            const beboerOptions = document.getElementById('beboerOptions');
+            
+            // If the selected value is 'beboer', remove the 'hidden' class. 
+            // Otherwise, add it back to hide the options.
+            if (roleSelect.value === 'beboer') {
+                beboerOptions.classList.remove('hidden');
+            } else {
+                beboerOptions.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
