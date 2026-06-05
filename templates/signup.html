@@ -12,6 +12,7 @@
     </style>
 </head>
 <body>
+    {% include 'navbar.html' %}
     <form method="POST" action="/signup">
         <input type="text" name="username" placeholder="Brugernavn" required><br><br>
         <input type="password" name="password" placeholder="Kodeord" required><br><br>

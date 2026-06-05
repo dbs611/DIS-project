@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Food Club</title>
     <style>
-        /* Simple styling to turn your divs into visual cards */
         .card-container {
             display: flex;
             flex-wrap: wrap;
@@ -16,26 +15,40 @@
             border-radius: 8px;
             padding: 16px;
             width: 250px;
+            height: 300px; /* FIXED: Added a height so the background image is visible */
             box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-            background-color: #f9f9f9;
+            
+            /* Background layout properties */
+            background-size: cover;       /* Scales the image to fill the card nicely */
+            background-position: center;  /* Centers the image inside the card */
+            background-repeat: no-repeat;
+            
+            /* Text styling overlay (Optional but highly recommended) */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;    /* Pushes text to the bottom of the card */
+            color: white;                 /* Makes text readable against darker images */
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8); /* Adds text shadow so white text pops */
         }
     </style>
 </head>
 <body>
-
+    {% include 'navbar.html' %}
     <h1>Upcoming Food Club Events</h1>
-                <button onclick="window.location.href='/foodclub/add'">
-                    Add a new foodclub
-        </button>
+    <button onclick="window.location.href='/foodclub/add'">
+        Add a new foodclub
+    </button>
+    
     <div class="card-container">
         {% for meal in meals %}
-            <div class="meal-card">
-                <h3>Menu: {{ meal['menu'] }}</h3>
-                <p><strong>Date:</strong> {{ meal['date'] }}</p>
+<div class="meal-card" style="background-image: url('/static/foodimages/{{meal['picture']}}');">                <h3>Menu: {{ meal['menu'] }}</h3>
+                <p><strong>Starts:</strong> {{ meal['start_at'] }}</p>
                 <p><strong>Chef ID:</strong> {{ meal['beboer_id'] }}</p>
+                <p><strong>Price:</strong> {{ meal['price'] }}</p>
+
             </div>
         {% else %}
-            <p>No meals have been scheduled yet!</p>
+            <p style="color: black; text-shadow: none;">No meals have been scheduled yet!</p>
         {% endfor %}
     </div>
 

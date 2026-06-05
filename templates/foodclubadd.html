@@ -35,6 +35,7 @@
     </style>
 </head>
 <body>
+    {% include 'navbar.html' %}
 
 <div class="card">
 
@@ -43,17 +44,21 @@
             Go to the Food clubs page
         </button>
 </div>
-    <form method="POST" action="/foodclub/add">
-        <input type="menu" name="menu" placeholder="Menu">
-        <input type="datetime-local" id="start_at" name="start_at">
-        <input type="datetime-local" id="close_at" name="close_at">
+    <form method="POST" action="/foodclub/add" enctype="multipart/form-data">
+        <input type="text" name="menu" placeholder="Menu" required><br>
+        <input type="datetime-local" id="start_at" name="start_at" required><br>
+        <input type="datetime-local" id="close_at" name="close_at" required><br>
         <p>Vegetarian</p>
         <input type="checkbox" name="vege">
         <p>Vegan</p>
         <input type="checkbox" name="vegan">
         <br>
+        <input name="image" type="file" id="fileName" accept=".jpg,.jpeg,.png" placeholder="Upload image of food">
+        <br><br>
+
         <button type="submit">submit</button>
     </form>
 
 </body>
 </html>
+

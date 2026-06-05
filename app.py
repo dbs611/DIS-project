@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, url_for, redirect
 import sqlalchemy as db
 from sqlalchemy import text
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from werkzeug.utils import secure_filename
+import os
 
 app = Flask(__name__)
 target_database = "postgresql://postgres:postgres@localhost/madklub"
@@ -16,6 +17,12 @@ food = {
         "Member management"
     ],
 }
+UPLOAD_FOLDER = os.path.join('static', "foodimages")
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+app.secret_key = 'secret_key'
 @app.route("/")
 def home():
     project = {
@@ -72,8 +79,9 @@ def signup():
                             "username": username,
                             "password": hashed_pw
                         })
-            
-        return "User Created"
+            session["user_id"] = beboer_id
+            session["username"] = username
+            return render_template("index.html")
     return render_template("signup.html")
 
 @app.route("/login/", methods = ['GET', 'POST'])
@@ -81,7 +89,7 @@ def login():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        result = conn.execute(text("SELECT username, password FROM user_table WHERE username = :username;"), {"username": username})
+        result = conn.execute(text("SELECT id, username, password FROM user_table WHERE username = :username;"), {"username": username})
         user_row = result.mappings().first()
         print(user_row)
         if not password:
@@ -91,16 +99,13 @@ def login():
             
             is_correct = check_password_hash(database_password, password)
             if is_correct:
-                print("Success")
-                food = {
-        "name": "result[0][2]",
-        "description": "A platform to organize and manage your food club activities.",
-        "features": [
-            "Event scheduling",
-            "Member management"
-        ],
-    }
-                return render_template("foodclub.html", food = food)
+                session["user_id"] = user_row["id"]
+                session["username"] = user_row["username"]
+                result = conn.execute(text("SELECT * FROM madklub;"))
+                madklub_rows = result.mappings().all()
+                
+                return render_template("foodclub.html", meals=madklub_rows)
+            
             else:
                 print("Incorrect password")
         else:
@@ -117,16 +122,25 @@ def foodclub():
 
 @app.route("/foodclub/add", methods = ['GET', 'POST'])
 def add_foodclub():
-
+    if "user_id" not in session:
+        return redirect(url_for("login"))
     if request.method == "POST":
         menu = request.form.get("menu") 
         close_at = request.form.get("close_at") 
         start_at = request.form.get("start_at") 
         vege = request.form.get("vege") == "on"
         vegan = request.form.get("vegan") == "on"
+        image_name = request.files.get("image")
+        image_name_save = None
+        print(UPLOAD_FOLDER)
+        if image_name and image_name.filename:
+            image_name_save = secure_filename(image_name.filename)
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], image_name_save)
+            image_name.save(filepath)
 
 
-        conn.execute(text("""
+        with database.begin() as conn:
+            conn.execute(text("""
                           INSERT INTO madklub (beboer_id, menu, close_at, start_at, vege, vegan, price, picture)
                           VALUES (:beboer_id, :menu, :close_at, :start_at, :vege, :vegan, :price, :picture)
                           """),
@@ -138,11 +152,14 @@ def add_foodclub():
                              "vege": vege,
                              "vegan": vegan,
                              "price": 100000,
-                             "picture": "somethingbla" 
+                             "picture": image_name_save 
                           }
                           )
-        conn.commit()
     return render_template("foodclubadd.html")
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
 
 if __name__ == "__main__":
     app.run(debug=True)

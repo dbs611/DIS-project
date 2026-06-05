@@ -6,11 +6,12 @@
 
 
 <body>
+    {% include 'navbar.html' %}
     <div>
         <h1>Login LOCK IN log(n) to epic foodclub</h1>
         <form action="" method="POST">
-            <input type="text" name="username">
-            <input type="password" name="password">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
             <button type="submit"> LOGIN </button>
 
 

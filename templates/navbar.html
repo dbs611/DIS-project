@@ -1,0 +1,16 @@
+<nav style="background-color: #3223d1; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <a href="/" style="color: white; text-decoration: none; font-weight: bold; font-size: 1.2rem;"> Dorm app</a>
+    </div>
+    <div style="display: flex; gap: 15px;">
+        {% if session.get('user_id') %}
+            <span style="color: #bbb;">Hello, {{ session.get('username') }}!</span>
+            <a href="/foodclub/add" style="color: white; text-decoration: none;">Add Foodclub</a>
+            <a href="/logout" style="color: white; text-decoration: none; font-weight: bold;">Logout</a>
+            {% else %}
+            <a href="/foodclub" style="color: white; text-decoration: none;">Food clubs</a>
+            <a href="/login" style="color: white; text-decoration: none;">Login</a>
+            <a href="/signup" style="color: white; text-decoration: none;">Signup</a>
+        {% endif %}
+    </div>
+</nav>
