@@ -16,6 +16,10 @@ yes
 
 
 # Website interaction instructions
+To access the site, you have to login. The logins are saved in the 'user_table' relation, and gives you access to register new foodclubs and join existing ones. You make your own user at http://127.0.0.1:5000/signup, and login at http://127.0.0.1:5000/login. 
+
+# Shortcommings
+We decided not to include events and cleaning schedule and focused purely on the foodclubs due to time constraints.  
 
 # AI-Declaration
-We have not used generative AI to generate code during the development of this project. We have used AI regarding some issues concerning packages and managing virtual enviroments. 
+We have not used generative AI to generate code during the development of this project. We have used AI regarding some issues concerning managing virtual enviroments and installing packages. 
