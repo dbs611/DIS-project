@@ -18,4 +18,4 @@ yes
 # Website interaction instructions
 
 # AI-Declaration
-no
+We have not used generative AI to generate code during the development of this project. We have used AI regarding some issues concerning packages and managing virtual enviroments. 
