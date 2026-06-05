@@ -125,6 +125,7 @@ def add_foodclub():
         vege = request.form.get("vege") == "on"
         vegan = request.form.get("vegan") == "on"
 
+
         conn.execute(text("""
                           INSERT INTO madklub (beboer_id, menu, close_at, start_at, vege, vegan, price, picture)
                           VALUES (:beboer_id, :menu, :close_at, :start_at, :vege, :vegan, :price, :picture)
