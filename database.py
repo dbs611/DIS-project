@@ -23,7 +23,7 @@ def create_user_table(conn):
             beboer_id INT,
             role VARCHAR(20),
             username VARCHAR(50),
-            password VARCHAR(50)
+            password VARCHAR(200)
             );"""
         ))
     conn.commit()

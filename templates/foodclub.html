@@ -1,60 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>{{ food.name }}</title>
-
+    <meta charset="UTF-8">
+    <title>Food Club</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
+        /* Simple styling to turn your divs into visual cards */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
             padding: 20px;
-            background: #f4f4f4;
         }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            margin-top: 0;
-        }
-
-        .status {
-            color: green;
-            font-weight: bold;
-        }
-
-        button {
-            padding: 10px 15px;
-            cursor: pointer;
+        .meal-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            width: 250px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            background-color: #f9f9f9;
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h1>{{ food.name }}</h1>
-
-    <p>{{ food.description }}</p>
+    <h1>Upcoming Food Club Events</h1>
                 <button onclick="window.location.href='/foodclub/add'">
-            Go to the Food clubs page
+                    Add a new foodclub
         </button>
-</div>
-    <form method="POST" action="/foodclub">
-        <input type="menu" name="menu" placeholder="Menu">
-        <input type="datetime-local" id="start_at" name="start_at">
-        <input type="datetime-local" id="close_at" name="close_at">
-        <p>Vegetarian</p>
-        <input type="checkbox" name="vege">
-        <p>Vegan</p>
-        <input type="checkbox" name="vegan">
-        <br>
-        <button type="submit">submit</button>
-    </form>
+    <div class="card-container">
+        {% for meal in meals %}
+            <div class="meal-card">
+                <h3>Menu: {{ meal['menu'] }}</h3>
+                <p><strong>Date:</strong> {{ meal['date'] }}</p>
+                <p><strong>Chef ID:</strong> {{ meal['beboer_id'] }}</p>
+            </div>
+        {% else %}
+            <p>No meals have been scheduled yet!</p>
+        {% endfor %}
+    </div>
 
 </body>
 </html>
