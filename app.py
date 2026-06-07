@@ -4,7 +4,9 @@ from sqlalchemy import text
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 import os
+import re
 
+datetime_pattern = r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$"
 app = Flask(__name__)
 target_database = "postgresql://postgres:postgres@localhost/madklub"
 database = db.create_engine(target_database)
@@ -128,6 +130,13 @@ def add_foodclub():
         menu = request.form.get("menu") 
         close_at = request.form.get("close_at") 
         start_at = request.form.get("start_at") 
+
+        if not re.match(datetime_pattern, start_at):
+            return "Start date has invalid format", 400
+
+        if not re.match(datetime_pattern, close_at):
+            return "Close date has invalid format", 400
+
         vege = request.form.get("vege") == "on"
         vegan = request.form.get("vegan") == "on"
         image_name = request.files.get("image")
