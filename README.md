@@ -9,47 +9,26 @@ This project is oriented for dormmates who are looking for an easy way to keep t
 ## E/R Diagram
 ![alt text](ERdiagram.png "E/R Diagram")
 
-# Install Dependencies 
-Install PostgreSQL from:
+# Install Dependencies
 
-https://www.postgresql.org/download/windows/
-
-During installation:
-
-Username: postgres
-Password: postgres
-Port: 5432
-
-Install all required packages:
+**Docker (recommended):** Install [Docker Desktop](https://docs.docker.com/get-docker/), then from the project folder run:
 
 ```bash
-pip install Flask
-pip install SQLAlchemy
-pip install sqlalchemy-utils
-pip install psycopg2-binary
-pip install Werkzeug
+docker compose up --build
 ```
 
-Or install them all at once:
+Open http://localhost:5000. Seeded login credentials are printed in the terminal during startup.
 
-```bash 
-pip install Flask SQLAlchemy sqlalchemy-utils psycopg2-binary Werkzeug
+**Manual setup:** Install [PostgreSQL](https://www.postgresql.org/download/) (user `postgres`, password `postgres`, port `5432`) and Python 3. Then:
+
+```bash
+pip install -r requirements.txt
+python database.py
+python seed-db.py
+python app.py
 ```
 
-# Getting started (compilation/execution instructions)
-First run:
-
-```bash 
-py database.py
-```
-
-to create all the databases. Then run:
-
-```bash 
-py -m flask run 
-```
-
-to run the app.  
+Open http://127.0.0.1:5000.
 
 
 

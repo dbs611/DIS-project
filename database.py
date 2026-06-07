@@ -1,10 +1,13 @@
+import os
+
 import sqlalchemy as db
 from sqlalchemy import text
 from sqlalchemy_utils import database_exists, create_database
 
-
-
-target_database = "postgresql://postgres:postgres@localhost/madklub"
+target_database = os.environ.get(
+    "DATABASE_URL",
+    "postgresql://postgres:postgres@localhost/madklub",
+)
 
 if not database_exists(target_database):
     create_database(target_database)

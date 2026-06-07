@@ -8,7 +8,10 @@ import re
 
 datetime_pattern = r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$"
 app = Flask(__name__)
-target_database = "postgresql://postgres:postgres@localhost/madklub"
+target_database = os.environ.get(
+    "DATABASE_URL",
+    "postgresql://postgres:postgres@localhost/madklub",
+)
 database = db.create_engine(target_database)
 conn = database.connect()
 food = {
@@ -83,7 +86,7 @@ def signup():
                         })
             session["user_id"] = beboer_id
             session["username"] = username
-            return render_template("index.html")
+            return redirect(url_for("foodclub"))
     return render_template("signup.html")
 
 @app.route("/login/", methods = ['GET', 'POST'])
@@ -171,5 +174,5 @@ def logout():
     return redirect(url_for("login"))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)
     
