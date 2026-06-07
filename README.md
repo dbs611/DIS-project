@@ -1,6 +1,10 @@
 # DIS_PROJECT_Group75
 Anton Vesterbæk - KU ID: mjh161
+
+
 Mathias Hilger - KU ID: smj563
+
+
 Simon Thrane - KU ID: dbs611
 
 # About the project
@@ -19,7 +23,9 @@ docker compose up --build
 
 Open http://localhost:5000. Seeded login credentials are printed in the terminal during startup.
 
-**Manual setup:** Install [PostgreSQL](https://www.postgresql.org/download/) (user `postgres`, password `postgres`, port `5432`) and Python 3. Then:
+**Manual setup:** Install [PostgreSQL](https://www.postgresql.org/download/) (user `postgres`, password `postgres`, port `5432`)
+
+ Then:
 
 ```bash
 pip install -r requirements.txt
