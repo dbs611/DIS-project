@@ -22,24 +22,32 @@ Port: 5432
 
 Install all required packages:
 
-'pip install Flask'
-'pip install SQLAlchemy'
-'pip install sqlalchemy-utils'
-'pip install psycopg2-binary'
-'pip install Werkzeug'
+```bash
+pip install Flask
+pip install SQLAlchemy
+pip install sqlalchemy-utils
+pip install psycopg2-binary
+pip install Werkzeug
+```
 
 Or install them all at once:
 
-'pip install Flask SQLAlchemy sqlalchemy-utils psycopg2-binary Werkzeug'
+```bash 
+pip install Flask SQLAlchemy sqlalchemy-utils psycopg2-binary Werkzeug
+```
 
 # Getting started (compilation/execution instructions)
 First run:
 
-'py database.py'
+```bash 
+py database.py
+```
 
 to create all the databases. Then run:
 
-' py -m flask run '
+```bash 
+py -m flask run 
+```
 
 to run the app.  
 
